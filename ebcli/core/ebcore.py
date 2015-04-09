@@ -42,7 +42,6 @@ iteritems = six.iteritems
 
 from . import globals, base, io, hooks
 from ..controllers.initialize import InitController
-from ..controllers.initializemenv import InitControllerMEnv
 from ..controllers.abort import AbortController
 from ..controllers.create import CreateController
 from ..controllers.events import EventsController
@@ -80,7 +79,6 @@ class EB(foundation.CementApp):
     def setup(self):
         controllers = [
             InitController,
-	    InitControllerMEnv,
             CreateController,
             EventsController,
             LogsController,

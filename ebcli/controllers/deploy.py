@@ -36,7 +36,7 @@ class DeployController(AbstractBaseController):
             (['--timeout'], dict(type=int, help=flag_text['general.timeout'])),
             ]
         usage = AbstractBaseController.Meta.usage.replace('{cmd}', label)
-    print "deploycontroller"
+
 
     def do_command(self):
         app_name = self.get_app_name()
@@ -46,23 +46,21 @@ class DeployController(AbstractBaseController):
         timeout = self.app.pargs.timeout
         message = self.app.pargs.message
 	
-	print "insiede do_command"
+
         if version and (message or label):
             raise InvalidOptionsError(strings['deploy.invalidoptions'])
 
         if not env_name:
             env_name = \
                 commonops.get_current_branch_environment()
-	    print "env_anme dentro do deploy controller ="+env_name
+	  
         if not env_name:
             message = strings['branch.noenv'].replace('eb {cmd}',
                                                       self.Meta.label)
 	    io.log_error(message)
             raise NoEnvironmentForBranchError()
-        # ToDo add support for deploying to multiples?
-        #print "empty ---"+self.app.pargs.environment_name
-	#if not self.app.pargs.environment_name
-
+       
+    #needed for multi env deploys
 	if type(env_name) is list:
 		for arg in env_name:
         		print "myag"+arg
