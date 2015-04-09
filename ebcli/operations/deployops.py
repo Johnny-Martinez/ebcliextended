@@ -20,7 +20,6 @@ def deploy(app_name, env_name, version, label, message, timeout=5):
     region_name = aws.get_default_region()
 
     io.log_info('Deploying code to ' + env_name + " in region " + region_name)
-    print "dentro das deploy ops:"
     if version:
         app_version_label = version
     else:
